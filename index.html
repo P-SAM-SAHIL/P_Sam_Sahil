@@ -87,12 +87,13 @@
             width: 100%;
         }
 
-        /* Custom scrollbar for webkit */
+        /* Custom scrollbar */
         ::-webkit-scrollbar {
-            width: 8px;
+            width: 6px;
         }
         ::-webkit-scrollbar-track {
-            background: #000;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 4px;
         }
         ::-webkit-scrollbar-thumb {
             background: #333;
@@ -117,13 +118,12 @@
             <div class="space-y-6 backdrop-blur-[2px] p-8 rounded-2xl border border-white/5 bg-black/20">
                 <!-- Profile Photo -->
                 <div class="flex justify-center">
-<img 
-    src="Sam_org.jpeg"
-    alt="P Sam Sahil" 
-    class="profile-img w-48 h-48 md:w-56 md:h-56 rounded-full border-2 border-white/10 object-cover mx-auto"
->
-
-
+                    <img 
+                        src="Sam_org.jpeg" 
+                        alt="P Sam Sahil" 
+                        class="profile-img w-48 h-48 md:w-56 md:h-56 rounded-full border-2 border-white/10 object-cover mx-auto"
+                        onerror="this.src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdCb3g9JzAgMCAyMDAgMjAwJz48cmVjdCB3aWR0aD0nMjAwJyBoZWlnaHQ9JzIwMCcgZmlsbD0nIzMzMycvPjx0ZXh0IHg9JzUwJScgeT0nNTAlJyBkb20tYmFzZWxpbmU9J21pZGRsZScgdGV4dC1hbmNob3I9J21pZGRsZScgZmlsbD0nI2ZmZScgZm9udC1zaXplPSc0MCc+UFNTPC90ZXh0Pjwvc3ZnPg=='"
+                    >
                 </div>
 
                 <!-- Name & Title -->
@@ -132,7 +132,7 @@
                         P Sam Sahil
                     </h1>
                     <p class="text-cyan-100/80 text-sm md:text-base tracking-[0.15em] uppercase font-light">
-                        Research Assistant &bull; ML Researcher
+                        Research Intern &bull; Research Assistant
                     </p>
                 </div>
 
@@ -152,9 +152,9 @@
                 <!-- Links -->
                 <div class="flex flex-wrap justify-center items-center gap-6 pt-2 text-xs md:text-sm tracking-wide">
                     <a href="mailto:p.samsahil2003@gmail.com" class="social-link text-white">Email</a>
-                    <a href="https://scholar.google.com" target="_blank" class="social-link text-white">Google Scholar</a>
-                    <a href="https://linkedin.com" target="_blank" class="social-link text-white">LinkedIn</a>
-                    <a href="https://github.com" target="_blank" class="social-link text-white">GitHub</a>
+                    <a href="https://scholar.google.com/citations?user=iZSvkDoAAAAJ&hl=en&authuser=2" target="_blank" class="social-link text-white">Google Scholar</a>
+                    <a href="https://www.linkedin.com/in/p-sam-sahil-782755245/" target="_blank" class="social-link text-white">LinkedIn</a>
+                    <a href="https://github.com/P-SAM-SAHIL" target="_blank" class="social-link text-white">GitHub</a>
                 </div>
             </div>
 
@@ -193,6 +193,51 @@
                         <p class="text-xs text-gray-400 leading-relaxed">
                             Applying rigorous NLP pipelines to large-scale social data. From geo-tagging historical newspapers to analyzing online polarization, using AI to answer fundamental questions about human behavior.
                         </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- LATEST UPDATES (Scrollable Section) -->
+            <div class="w-full text-left space-y-6">
+                <h2 class="text-center text-xs uppercase tracking-[0.3em] text-gray-500">Latest Updates</h2>
+                
+                <!-- Scrollable Container -->
+                <div class="glass-card rounded-xl p-2 h-64 overflow-y-auto">
+                    <div class="space-y-2">
+                        
+                        <!-- Update Item 1: SemEval POLAR -->
+                        <div class="p-4 hover:bg-white/5 rounded-lg transition-colors border-b border-white/5 last:border-0">
+                            <div class="flex justify-between items-start mb-1">
+                                <span class="text-xs text-cyan-300 font-mono">Present</span>
+                                <span class="text-[10px] text-gray-500 border border-gray-700 px-1.5 py-0.5 rounded">Event</span>
+                            </div>
+                            <h3 class="text-sm font-bold text-gray-200">POLAR @ SemEval-2026</h3>
+                            <p class="text-xs text-gray-400 mt-1">Co-organizer for Task 9: Detecting Multilingual, Multicultural, and Multievent Online Polarization.</p>
+                            <a href="https://polar-semeval.github.io" target="_blank" class="inline-block mt-2 text-xs text-cyan-200 hover:text-white border-b border-cyan-200/50 hover:border-white pb-0.5 transition-all">
+                                Visit polar-semeval.github.io &rarr;
+                            </a>
+                        </div>
+
+                        <!-- Update Item 2: Northwestern -->
+                        <div class="p-4 hover:bg-white/5 rounded-lg transition-colors border-b border-white/5 last:border-0">
+                            <div class="flex justify-between items-start mb-1">
+                                <span class="text-xs text-gray-400 font-mono">Jan 2026</span>
+                                <span class="text-[10px] text-gray-500 border border-gray-700 px-1.5 py-0.5 rounded">Internship</span>
+                            </div>
+                            <h3 class="text-sm font-bold text-gray-200">Northwestern University</h3>
+                            <p class="text-xs text-gray-400 mt-1">Incoming Research Assistant Intern at Change Lab (Kellogg School of Management).</p>
+                        </div>
+
+                        <!-- Update Item 3: NTU -->
+                        <div class="p-4 hover:bg-white/5 rounded-lg transition-colors border-b border-white/5 last:border-0">
+                            <div class="flex justify-between items-start mb-1">
+                                <span class="text-xs text-gray-400 font-mono">Jan 2026</span>
+                                <span class="text-[10px] text-gray-500 border border-gray-700 px-1.5 py-0.5 rounded">Internship</span>
+                            </div>
+                            <h3 class="text-sm font-bold text-gray-200">NTU Singapore</h3>
+                            <p class="text-xs text-gray-400 mt-1">Incoming Research Intern working on Fast RAG on Edge Devices.</p>
+                        </div>
+
                     </div>
                 </div>
             </div>
