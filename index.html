@@ -15,7 +15,7 @@
         body {
             margin: 0;
             overflow-x: hidden;
-            background-color: #050505;
+            background-color: #02040a; /* Deep dark blue-black */
             font-family: 'Fira Code', monospace;
             color: #e5e5e5;
         }
@@ -27,7 +27,8 @@
             width: 100%;
             height: 100%;
             z-index: -1;
-            background: radial-gradient(circle at center, transparent 0%, #000000 100%);
+            /* Subtle vignette to focus attention */
+            background: radial-gradient(circle at 50% 50%, #0a1120 0%, #000000 100%);
         }
 
         .content-wrapper {
@@ -38,8 +39,8 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            padding-top: 4rem;
-            padding-bottom: 4rem;
+            padding-top: 5rem;
+            padding-bottom: 5rem;
         }
 
         .profile-img {
@@ -47,30 +48,33 @@
         }
         .profile-img:hover {
             transform: scale(1.05);
-            box-shadow: 0 0 30px rgba(100, 200, 255, 0.3);
+            box-shadow: 0 0 40px rgba(6, 182, 212, 0.4); /* Cyan glow */
         }
 
         .glass-card {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(5px);
+            background: rgba(10, 20, 35, 0.4); /* Slightly bluish tint */
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(8px); /* Increased blur */
             transition: all 0.3s ease;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
         }
         
         .glass-card:hover {
-            background: rgba(255, 255, 255, 0.07);
-            border-color: rgba(255, 255, 255, 0.2);
+            background: rgba(20, 30, 50, 0.5);
+            border-color: rgba(6, 182, 212, 0.3); /* Cyan tint on hover */
             transform: translateY(-2px);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
         }
 
         .social-link {
             position: relative;
             text-decoration: none;
             opacity: 0.7;
-            transition: opacity 0.3s;
+            transition: all 0.3s;
         }
         .social-link:hover {
             opacity: 1;
+            color: #a5f3fc;
         }
         .social-link::after {
             content: '';
@@ -96,11 +100,11 @@
             border-radius: 4px;
         }
         ::-webkit-scrollbar-thumb {
-            background: #333;
+            background: #334155;
             border-radius: 4px;
         }
         ::-webkit-scrollbar-thumb:hover {
-            background: #555;
+            background: #475569;
         }
     </style>
 </head>
@@ -115,14 +119,14 @@
         <main class="max-w-3xl w-full text-center space-y-12">
             
             <!-- Header Section -->
-            <div class="space-y-6 backdrop-blur-[2px] p-8 rounded-2xl border border-white/5 bg-black/20">
+            <div class="space-y-6 backdrop-blur-md p-8 rounded-2xl border border-white/5 bg-black/20 shadow-2xl">
                 <!-- Profile Photo -->
                 <div class="flex justify-center">
                     <img 
                         src="Sam_org.jpeg" 
                         alt="P Sam Sahil" 
-                        class="profile-img w-48 h-48 md:w-56 md:h-56 rounded-full border-2 border-white/10 object-cover mx-auto"
-                        onerror="this.src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdCb3g9JzAgMCAyMDAgMjAwJz48cmVjdCB3aWR0aD0nMjAwJyBoZWlnaHQ9JzIwMCcgZmlsbD0nIzMzMycvPjx0ZXh0IHg9JzUwJScgeT0nNTAlJyBkb20tYmFzZWxpbmU9J21pZGRsZScgdGV4dC1hbmNob3I9J21pZGRsZScgZmlsbD0nI2ZmZScgZm9udC1zaXplPSc0MCc+UFNTPC90ZXh0Pjwvc3ZnPg=='"
+                        class="profile-img w-48 h-48 md:w-56 md:h-56 rounded-full border-2 border-cyan-900/50 object-cover mx-auto"
+                        onerror="this.src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdCb3g9JzAgMCAyMDAgMjAwJz48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9J2czJyB4MT0nMCUnIHkxPScwJScgeDI9JzEwMCUnIHkyPScxMDAlJz48c3RvcCBvZmZzZXQ9JzAlJyBzdHlsZT0nc3RvcC1jb2xvcjojMDUxOTM3O3N0b3Atb3BhY2l0eToxJyAvPjxzdG9wIG9mZnNldD0nMTAwJScgc3R5bGU9J3N0b3AtY29sb3I6IzAwMDAwMDtzdG9wLW9wYWNpdHk6MScgLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB3aWR0aD0nMjAwJyBoZWlnaHQ9JzIwMCcgZmlsbD0ndXJsKCNnMyknLz48dGV4dCB4PSc1MCUnIHk9JzUwJScgZG9tLWJhc2VsaW5lPSdtaWRkbGUnIHRleHQtYW5jaG9yPSdtaWRkbGUnIGZpbGw9JyM5NGRkZmYnIGZvbnQtZmFtaWx5PSJtb25vc3BhY2UiIGZvbnQtc2l6ZT0nNDAnPlBTUzwvdGV4dD48L3N2Zz4='"
                     >
                 </div>
 
@@ -131,7 +135,7 @@
                     <h1 class="text-4xl md:text-5xl font-bold tracking-tight text-white">
                         P Sam Sahil
                     </h1>
-                    <p class="text-cyan-100/80 text-sm md:text-base tracking-[0.15em] uppercase font-light">
+                    <p class="text-cyan-200/90 text-sm md:text-base tracking-[0.2em] uppercase font-light">
                         Research Intern &bull; Research Assistant
                     </p>
                 </div>
@@ -140,12 +144,12 @@
                 <div class="text-gray-400 leading-relaxed text-sm max-w-xl mx-auto font-light">
                     <p>
                         Research Intern at 
-                        <span class="text-gray-200">Northwestern University</span>, 
-                        <span class="text-gray-200">NTU Singapore</span>, and 
-                        <span class="text-gray-200">University of Hamburg</span>.
+                        <span class="text-cyan-100 font-medium">Northwestern University</span>, 
+                        <span class="text-cyan-100 font-medium">NTU Singapore</span>, and 
+                        <span class="text-cyan-100 font-medium">University of Hamburg</span>.
                     </p>
-                    <p class="mt-2">
-                        Pivoting from black-box models to principled design. Focused on building systems that are not just performant, but reasoning-capable and transparent.
+                    <p class="mt-3">
+                        Pivoting from black-box models to <span class="text-white">principled design</span>. Focused on building systems that are not just performant, but reasoning-capable and transparent.
                     </p>
                 </div>
 
@@ -165,33 +169,45 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <!-- Interest 1 -->
                     <div class="glass-card p-5 rounded-xl">
-                        <h3 class="text-sm font-semibold text-cyan-100 mb-2 uppercase tracking-wider">Interpretability & Trust</h3>
-                        <p class="text-xs text-gray-400 leading-relaxed">
-                            Moving beyond "black box" optimization to design transparent AI architectures. Investigating how internal reasoning mechanisms can be made explicit and human-verifiable, specifically through neuro-symbolic frameworks.
+                        <div class="flex items-center gap-2 mb-2">
+                            <div class="w-1.5 h-1.5 rounded-full bg-cyan-400"></div>
+                            <h3 class="text-sm font-semibold text-cyan-100 uppercase tracking-wider">Interpretability & Trust</h3>
+                        </div>
+                        <p class="text-xs text-gray-400 leading-relaxed pl-3.5 border-l border-white/5">
+                            Moving beyond "black box" optimization to design transparent AI architectures. Investigating how internal reasoning mechanisms can be made explicit and human-verifiable.
                         </p>
                     </div>
 
                     <!-- Interest 2 -->
                     <div class="glass-card p-5 rounded-xl">
-                        <h3 class="text-sm font-semibold text-cyan-100 mb-2 uppercase tracking-wider">Neuro-Symbolic AI</h3>
-                        <p class="text-xs text-gray-400 leading-relaxed">
-                            Bridging the gap between the scale of neural networks and the logic of symbolic reasoning. Developing dual-path architectures (like GAT + RoBERTa) to ground contextual semantics in structured knowledge.
+                         <div class="flex items-center gap-2 mb-2">
+                            <div class="w-1.5 h-1.5 rounded-full bg-purple-400"></div>
+                            <h3 class="text-sm font-semibold text-cyan-100 uppercase tracking-wider">Neuro-Symbolic AI</h3>
+                        </div>
+                        <p class="text-xs text-gray-400 leading-relaxed pl-3.5 border-l border-white/5">
+                            Bridging the gap between the scale of neural networks and the logic of symbolic reasoning. Developing dual-path architectures (GAT + RoBERTa) to ground semantics in structured knowledge.
                         </p>
                     </div>
 
                     <!-- Interest 3 -->
                     <div class="glass-card p-5 rounded-xl">
-                        <h3 class="text-sm font-semibold text-cyan-100 mb-2 uppercase tracking-wider">Multilingual NLP</h3>
-                        <p class="text-xs text-gray-400 leading-relaxed">
-                            Breaking language barriers in emotion detection and polarization analysis. Focusing on cross-lingual generalization to capture nuance across diverse cultural contexts and low-resource languages.
+                         <div class="flex items-center gap-2 mb-2">
+                            <div class="w-1.5 h-1.5 rounded-full bg-blue-400"></div>
+                            <h3 class="text-sm font-semibold text-cyan-100 uppercase tracking-wider">Multilingual NLP</h3>
+                        </div>
+                        <p class="text-xs text-gray-400 leading-relaxed pl-3.5 border-l border-white/5">
+                            Breaking language barriers in emotion detection and polarization. Focusing on cross-lingual generalization to capture nuance across diverse cultural contexts and low-resource languages.
                         </p>
                     </div>
 
                     <!-- Interest 4 -->
                     <div class="glass-card p-5 rounded-xl">
-                        <h3 class="text-sm font-semibold text-cyan-100 mb-2 uppercase tracking-wider">Computational Social Science</h3>
-                        <p class="text-xs text-gray-400 leading-relaxed">
-                            Applying rigorous NLP pipelines to large-scale social data. From geo-tagging historical newspapers to analyzing online polarization, using AI to answer fundamental questions about human behavior.
+                         <div class="flex items-center gap-2 mb-2">
+                            <div class="w-1.5 h-1.5 rounded-full bg-green-400"></div>
+                            <h3 class="text-sm font-semibold text-cyan-100 uppercase tracking-wider">Comp. Social Science</h3>
+                        </div>
+                        <p class="text-xs text-gray-400 leading-relaxed pl-3.5 border-l border-white/5">
+                            Applying rigorous NLP pipelines to large-scale social data. From geo-tagging historical newspapers to analyzing online polarization to answer fundamental questions.
                         </p>
                     </div>
                 </div>
@@ -206,12 +222,12 @@
                     <div class="space-y-2">
                         
                         <!-- Update Item 1: SemEval POLAR -->
-                        <div class="p-4 hover:bg-white/5 rounded-lg transition-colors border-b border-white/5 last:border-0">
+                        <div class="p-4 hover:bg-white/5 rounded-lg transition-colors border-b border-white/5 last:border-0 group">
                             <div class="flex justify-between items-start mb-1">
                                 <span class="text-xs text-cyan-300 font-mono">Present</span>
-                                <span class="text-[10px] text-gray-500 border border-gray-700 px-1.5 py-0.5 rounded">Event</span>
+                                <span class="text-[10px] text-gray-400 border border-gray-700 px-1.5 py-0.5 rounded group-hover:border-cyan-500/50 transition-colors">Event</span>
                             </div>
-                            <h3 class="text-sm font-bold text-gray-200">POLAR @ SemEval-2026</h3>
+                            <h3 class="text-sm font-bold text-gray-200 group-hover:text-white transition-colors">POLAR @ SemEval-2026</h3>
                             <p class="text-xs text-gray-400 mt-1">Co-organizer for Task 9: Detecting Multilingual, Multicultural, and Multievent Online Polarization.</p>
                             <a href="https://polar-semeval.github.io" target="_blank" class="inline-block mt-2 text-xs text-cyan-200 hover:text-white border-b border-cyan-200/50 hover:border-white pb-0.5 transition-all">
                                 Visit polar-semeval.github.io &rarr;
@@ -219,22 +235,22 @@
                         </div>
 
                         <!-- Update Item 2: Northwestern -->
-                        <div class="p-4 hover:bg-white/5 rounded-lg transition-colors border-b border-white/5 last:border-0">
+                        <div class="p-4 hover:bg-white/5 rounded-lg transition-colors border-b border-white/5 last:border-0 group">
                             <div class="flex justify-between items-start mb-1">
                                 <span class="text-xs text-gray-400 font-mono">Jan 2026</span>
-                                <span class="text-[10px] text-gray-500 border border-gray-700 px-1.5 py-0.5 rounded">Internship</span>
+                                <span class="text-[10px] text-gray-400 border border-gray-700 px-1.5 py-0.5 rounded group-hover:border-white/30 transition-colors">Internship</span>
                             </div>
-                            <h3 class="text-sm font-bold text-gray-200">Northwestern University</h3>
+                            <h3 class="text-sm font-bold text-gray-200 group-hover:text-white">Northwestern University</h3>
                             <p class="text-xs text-gray-400 mt-1">Incoming Research Assistant Intern at Change Lab (Kellogg School of Management).</p>
                         </div>
 
                         <!-- Update Item 3: NTU -->
-                        <div class="p-4 hover:bg-white/5 rounded-lg transition-colors border-b border-white/5 last:border-0">
+                        <div class="p-4 hover:bg-white/5 rounded-lg transition-colors border-b border-white/5 last:border-0 group">
                             <div class="flex justify-between items-start mb-1">
                                 <span class="text-xs text-gray-400 font-mono">Jan 2026</span>
-                                <span class="text-[10px] text-gray-500 border border-gray-700 px-1.5 py-0.5 rounded">Internship</span>
+                                <span class="text-[10px] text-gray-400 border border-gray-700 px-1.5 py-0.5 rounded group-hover:border-white/30 transition-colors">Internship</span>
                             </div>
-                            <h3 class="text-sm font-bold text-gray-200">NTU Singapore</h3>
+                            <h3 class="text-sm font-bold text-gray-200 group-hover:text-white">NTU Singapore</h3>
                             <p class="text-xs text-gray-400 mt-1">Incoming Research Intern working on Fast RAG on Edge Devices.</p>
                         </div>
 
@@ -248,10 +264,10 @@
                 
                 <!-- Publication 1 -->
                 <div class="glass-card p-6 rounded-xl relative group cursor-default">
-                    <div class="absolute top-0 right-0 p-4 opacity-50 text-xs text-green-400 font-bold tracking-wider">
+                    <div class="absolute top-0 right-0 p-4 opacity-50 text-xs text-green-400 font-bold tracking-wider group-hover:opacity-100 transition-opacity">
                         PUBLISHED (ACL)
                     </div>
-                    <h3 class="text-lg md:text-xl font-semibold text-gray-100 pr-20">
+                    <h3 class="text-lg md:text-xl font-semibold text-gray-100 pr-20 group-hover:text-white transition-colors">
                         Breaking Language Barriers in Emotion Detection
                     </h3>
                     <p class="text-xs text-cyan-200/70 mt-1 mb-3 font-light">
@@ -261,17 +277,17 @@
                         Developed multilingual models for multi-label emotion detection across diverse languages, achieving competitive leaderboard ranks (Russian 7th, Hindi 9th).
                     </p>
                     <div class="mt-4 flex gap-3">
-                        <span class="text-[10px] border border-gray-700 px-2 py-1 rounded text-gray-500">Multilingual NLP</span>
-                        <span class="text-[10px] border border-gray-700 px-2 py-1 rounded text-gray-500">Emotion AI</span>
+                        <span class="text-[10px] border border-gray-700 px-2 py-1 rounded text-gray-500 group-hover:border-gray-500 transition-colors">Multilingual NLP</span>
+                        <span class="text-[10px] border border-gray-700 px-2 py-1 rounded text-gray-500 group-hover:border-gray-500 transition-colors">Emotion AI</span>
                     </div>
                 </div>
 
                 <!-- Publication 2 -->
                 <div class="glass-card p-6 rounded-xl relative group cursor-default">
-                    <div class="absolute top-0 right-0 p-4 opacity-50 text-xs text-yellow-400 font-bold tracking-wider">
+                    <div class="absolute top-0 right-0 p-4 opacity-50 text-xs text-yellow-400 font-bold tracking-wider group-hover:opacity-100 transition-opacity">
                         UNDER REVIEW
                     </div>
-                    <h3 class="text-lg md:text-xl font-semibold text-gray-100 pr-24">
+                    <h3 class="text-lg md:text-xl font-semibold text-gray-100 pr-24 group-hover:text-white transition-colors">
                         Synergizing Contextual Semantics and Moral Knowledge Graphs
                     </h3>
                     <p class="text-xs text-cyan-200/70 mt-1 mb-3 font-light">
@@ -281,14 +297,14 @@
                         Proposed a hybrid RoBERTa + GAT architecture leveraging eMFD knowledge graphs with cross-attentive fusion to improve moral foundation prediction.
                     </p>
                     <div class="mt-4 flex gap-3">
-                        <span class="text-[10px] border border-gray-700 px-2 py-1 rounded text-gray-500">Graph Neural Networks</span>
-                        <span class="text-[10px] border border-gray-700 px-2 py-1 rounded text-gray-500">Moral AI</span>
+                        <span class="text-[10px] border border-gray-700 px-2 py-1 rounded text-gray-500 group-hover:border-gray-500 transition-colors">Graph Neural Networks</span>
+                        <span class="text-[10px] border border-gray-700 px-2 py-1 rounded text-gray-500 group-hover:border-gray-500 transition-colors">Moral AI</span>
                     </div>
                 </div>
 
             </div>
 
-            <footer class="pt-12 text-[10px] text-gray-700 uppercase tracking-widest pb-8">
+            <footer class="pt-12 text-[10px] text-gray-600 uppercase tracking-widest pb-8">
                 <p>&copy; 2025 P Sam Sahil &bull; Built with Three.js</p>
             </footer>
         </main>
@@ -303,10 +319,11 @@
             
             // 1. Scene & Camera
             const scene = new THREE.Scene();
-            scene.fog = new THREE.FogExp2(0x050505, 0.02); // Matched to body bg color
+            // Deep blue fog to blend stars into the distance
+            scene.fog = new THREE.FogExp2(0x02040a, 0.025); 
 
             const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-            camera.position.z = 15;
+            camera.position.z = 20;
 
             // 2. Renderer
             const renderer = new THREE.WebGLRenderer({
@@ -317,7 +334,7 @@
             renderer.setSize(window.innerWidth, window.innerHeight);
             renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
-            // 3. Texture Generation
+            // 3. Texture Generation (Soft Glow)
             function createStarTexture() {
                 const matCanvas = document.createElement('canvas');
                 matCanvas.width = 32;
@@ -325,74 +342,114 @@
                 const context = matCanvas.getContext('2d');
                 const gradient = context.createRadialGradient(16, 16, 0, 16, 16, 16);
                 gradient.addColorStop(0, 'rgba(255, 255, 255, 1)');
-                gradient.addColorStop(0.2, 'rgba(255, 255, 255, 0.8)');
-                gradient.addColorStop(0.5, 'rgba(255, 255, 255, 0.2)');
+                gradient.addColorStop(0.2, 'rgba(230, 240, 255, 0.8)'); // Slight blue tint
+                gradient.addColorStop(0.5, 'rgba(6, 182, 212, 0.2)'); // Cyan glow
                 gradient.addColorStop(1, 'rgba(0, 0, 0, 0)');
                 context.fillStyle = gradient;
                 context.fillRect(0,0,32,32);
-                const texture = new THREE.CanvasTexture(matCanvas);
-                return texture;
+                return new THREE.CanvasTexture(matCanvas);
             }
 
-            // 4. Particles
-            const particlesGeometry = new THREE.BufferGeometry();
-            const particlesCount = 2000;
-
-            const posArray = new Float32Array(particlesCount * 3);
-            const colorsArray = new Float32Array(particlesCount * 3);
-
-            for(let i = 0; i < particlesCount; i++) {
-                const radius = 45 * Math.cbrt(Math.random());
-                const theta = Math.random() * 2 * Math.PI;
-                const phi = Math.acos(2 * Math.random() - 1);
-
-                const x = radius * Math.sin(phi) * Math.cos(theta);
-                const y = radius * Math.sin(phi) * Math.sin(theta);
-                const z = radius * Math.cos(phi);
-
-                posArray[i * 3] = x;
-                posArray[i * 3 + 1] = y;
-                posArray[i * 3 + 2] = z;
-
-                const colorType = Math.random();
-                if (colorType > 0.9) {
-                    colorsArray[i * 3] = 0.4;
-                    colorsArray[i * 3 + 1] = 0.8;
-                    colorsArray[i * 3 + 2] = 1.0;
-                } else if (colorType > 0.85) {
-                    colorsArray[i * 3] = 0.7;
-                    colorsArray[i * 3 + 1] = 0.5;
-                    colorsArray[i * 3 + 2] = 1.0;
-                } else {
-                    const shade = 0.6 + Math.random() * 0.4;
-                    colorsArray[i * 3] = shade;
-                    colorsArray[i * 3 + 1] = shade;
-                    colorsArray[i * 3 + 2] = shade;
-                }
+            // --- PART 1: Background Stars (Dust) ---
+            const starGeo = new THREE.BufferGeometry();
+            const starCount = 1200;
+            const starPos = new Float32Array(starCount * 3);
+            
+            for(let i=0; i<starCount*3; i++) {
+                starPos[i] = (Math.random() - 0.5) * 80; // Wide spread
             }
-
-            particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
-            particlesGeometry.setAttribute('color', new THREE.BufferAttribute(colorsArray, 3));
-
-            const particlesMaterial = new THREE.PointsMaterial({
-                size: 0.12,
+            starGeo.setAttribute('position', new THREE.BufferAttribute(starPos, 3));
+            const starMat = new THREE.PointsMaterial({
+                size: 0.15,
                 map: createStarTexture(),
                 transparent: true,
-                opacity: 0.85,
-                vertexColors: true,
-                blending: THREE.AdditiveBlending,
-                depthWrite: false
+                opacity: 0.6,
+                depthWrite: false,
+                blending: THREE.AdditiveBlending
             });
+            const stars = new THREE.Points(starGeo, starMat);
+            scene.add(stars);
 
-            const starField = new THREE.Points(particlesGeometry, particlesMaterial);
-            scene.add(starField);
+
+            // --- PART 2: Neural Network / Constellations (Foreground) ---
+            // These particles connect with lines
+            const netGeo = new THREE.BufferGeometry();
+            const netCount = 70; // Low count for performance
+            const netPos = new Float32Array(netCount * 3);
+            const netVel = []; // Velocities
+
+            for(let i=0; i<netCount; i++) {
+                netPos[i*3] = (Math.random() - 0.5) * 30;
+                netPos[i*3+1] = (Math.random() - 0.5) * 30;
+                netPos[i*3+2] = (Math.random() - 0.5) * 15 + 5; // Closer to camera
+                
+                netVel.push({
+                    x: (Math.random() - 0.5) * 0.02,
+                    y: (Math.random() - 0.5) * 0.02,
+                    z: (Math.random() - 0.5) * 0.02
+                });
+            }
+            netGeo.setAttribute('position', new THREE.BufferAttribute(netPos, 3));
+            
+            const netMat = new THREE.PointsMaterial({
+                size: 0.3,
+                color: 0x22d3ee, // Cyan-400
+                transparent: true,
+                opacity: 0.8,
+                blending: THREE.AdditiveBlending
+            });
+            const networkPoints = new THREE.Points(netGeo, netMat);
+            scene.add(networkPoints);
+
+            // Lines geometry (dynamic)
+            const lineGeo = new THREE.BufferGeometry();
+            const lineMat = new THREE.LineBasicMaterial({
+                color: 0x22d3ee,
+                transparent: true,
+                opacity: 0.15,
+                blending: THREE.AdditiveBlending
+            });
+            const lines = new THREE.LineSegments(lineGeo, lineMat);
+            scene.add(lines);
+
+
+            // --- PART 3: Floating Geometry (Structured Logic) ---
+            const geoGroup = new THREE.Group();
+            scene.add(geoGroup);
+
+            // Create a few wireframe shapes
+            const shapes = [];
+            
+            function addShape(size, x, y, z) {
+                const geometry = new THREE.IcosahedronGeometry(size, 0);
+                const wireframe = new THREE.WireframeGeometry(geometry);
+                const line = new THREE.LineSegments(wireframe);
+                line.material.depthTest = false;
+                line.material.opacity = 0.08;
+                line.material.transparent = true;
+                line.material.color = new THREE.Color(0x22d3ee); // Cyan
+                
+                line.position.set(x, y, z);
+                
+                // Add custom rotation speed property
+                line.userData = { 
+                    rotX: (Math.random() - 0.5) * 0.002,
+                    rotY: (Math.random() - 0.5) * 0.002 
+                };
+                
+                geoGroup.add(line);
+                shapes.push(line);
+            }
+
+            // Add shapes at different depths
+            addShape(4, -15, 10, -5);
+            addShape(6, 20, -10, -10);
+            addShape(2, -8, -15, 5);
+
 
             // 5. Interaction
             let mouseX = 0;
             let mouseY = 0;
-            let targetX = 0;
-            let targetY = 0;
-
             const windowHalfX = window.innerWidth / 2;
             const windowHalfY = window.innerHeight / 2;
 
@@ -411,17 +468,61 @@
             const clock = new THREE.Clock();
 
             function animate() {
-                const elapsedTime = clock.getElapsedTime();
+                const time = clock.getElapsedTime();
 
-                targetX = mouseX * 0.0003;
-                targetY = mouseY * 0.0003;
+                // Rotate dust
+                stars.rotation.y = time * 0.02;
+                stars.rotation.x = mouseY * 0.00005;
 
-                starField.rotation.y += 0.0003;
-                starField.rotation.y += 0.03 * (targetX - starField.rotation.y);
-                starField.rotation.x += 0.03 * (targetY - starField.rotation.x);
+                // Update Network Points
+                const positions = networkPoints.geometry.attributes.position.array;
+                
+                // Move points
+                for(let i=0; i<netCount; i++) {
+                    positions[i*3] += netVel[i].x;
+                    positions[i*3+1] += netVel[i].y;
+                    positions[i*3+2] += netVel[i].z;
 
-                const scale = 1 + Math.sin(elapsedTime * 0.3) * 0.03;
-                starField.scale.set(scale, scale, scale);
+                    // Boundary check (bounce softly)
+                    if(Math.abs(positions[i*3]) > 20) netVel[i].x *= -1;
+                    if(Math.abs(positions[i*3+1]) > 20) netVel[i].y *= -1;
+                    if(Math.abs(positions[i*3+2]) > 10) netVel[i].z *= -1;
+                }
+                networkPoints.geometry.attributes.position.needsUpdate = true;
+
+                // Update Network Lines (The "Graph" Logic)
+                const linePositions = [];
+                // N^2 check but N is small (70)
+                for(let i=0; i<netCount; i++) {
+                    for(let j=i+1; j<netCount; j++) {
+                        const dx = positions[i*3] - positions[j*3];
+                        const dy = positions[i*3+1] - positions[j*3+1];
+                        const dz = positions[i*3+2] - positions[j*3+2];
+                        const dist = Math.sqrt(dx*dx + dy*dy + dz*dz);
+
+                        if(dist < 6) { // Connection threshold
+                            linePositions.push(
+                                positions[i*3], positions[i*3+1], positions[i*3+2],
+                                positions[j*3], positions[j*3+1], positions[j*3+2]
+                            );
+                        }
+                    }
+                }
+                lineGeo.setAttribute('position', new THREE.Float32BufferAttribute(linePositions, 3));
+
+                // Rotate Geometric Shapes
+                shapes.forEach(shape => {
+                    shape.rotation.x += shape.userData.rotX;
+                    shape.rotation.y += shape.userData.rotY;
+                    
+                    // Gentle float
+                    shape.position.y += Math.sin(time * 0.5 + shape.position.x) * 0.005;
+                });
+
+                // Parallax for Geometry Group
+                geoGroup.rotation.y = mouseX * 0.0001;
+                geoGroup.rotation.x = mouseY * 0.0001;
+
 
                 renderer.render(scene, camera);
                 requestAnimationFrame(animate);
