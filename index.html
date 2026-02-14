@@ -1,569 +1,464 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-us">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="google-site-verification" content="nNPNk9lEUk3cKis0nDYM5u0ZsHYlu_2ll-x0nWs-Bw0" />
-    <title>P Sam Sahil | Portfolio</title>
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts: Fira Code -->
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;600&display=swap" rel="stylesheet">
-    <!-- Three.js CDN -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>P Sam Sahil | Academic Portfolio</title>
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.9.0/css/academicons.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700%7CRoboto:400,400italic,700%7CRoboto+Mono&display=swap">
+
+  <style>
+    /* --- CSS VARIABLES FOR THEME --- */
+    :root {
+      /* Default Dark Mode Variables */
+      --bg-color: #121212;
+      --text-color: #e0e0e0;
+      --card-bg: #1e1e1e;
+      --section-bg: #181818; /* Slightly lighter for alternating sections */
+      --navbar-bg: #1e1e1e;
+      --border-color: #333;
+      --muted-text: #a0a0a0;
+      --link-color: #799aff;
+      --link-hover: #a3baff;
+      --shadow-color: rgba(0,0,0,0.5);
+    }
+
+    /* Light Mode Overrides */
+    body.light-mode {
+      --bg-color: #ffffff;
+      --text-color: #292929;
+      --card-bg: #ffffff;
+      --section-bg: #f8f9fa;
+      --navbar-bg: #ffffff;
+      --border-color: rgba(0,0,0,0.1);
+      --muted-text: #666;
+      --link-color: #5872ff;
+      --link-hover: #2a4bfe;
+      --shadow-color: rgba(0,0,0,0.05);
+    }
+
+    /* Base Styles using Variables */
+    body {
+      font-family: 'Roboto', sans-serif;
+      color: var(--text-color);
+      background-color: var(--bg-color);
+      padding-top: 70px;
+      transition: background-color 0.3s, color 0.3s;
+    }
     
-    <style>
-        body {
-            margin: 0;
-            overflow-x: hidden;
-            background-color: #02040a; /* Deep dark blue-black */
-            font-family: 'Fira Code', monospace;
-            color: #e5e5e5;
-        }
+    a { color: var(--link-color); text-decoration: none; transition: color 0.2s; }
+    a:hover { color: var(--link-hover); text-decoration: underline; }
+    
+    /* Navigation */
+    .navbar {
+      box-shadow: 0 1px 0 var(--border-color);
+      background: var(--navbar-bg);
+      transition: background-color 0.3s;
+    }
+    .navbar-brand {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      color: var(--text-color);
+    }
+    .navbar-brand:hover { color: var(--text-color); }
+    .nav-link { color: var(--text-color) !important; }
 
-        #bg-canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            /* Subtle vignette to focus attention */
-            background: radial-gradient(circle at 50% 50%, #0a1120 0%, #000000 100%);
-        }
+    /* Theme Toggle Button */
+    .theme-toggle {
+      background: none;
+      border: none;
+      color: var(--text-color);
+      cursor: pointer;
+      font-size: 1.2rem;
+      padding: 0 10px;
+      margin-left: 15px;
+    }
+    .theme-toggle:focus { outline: none; }
 
-        .content-wrapper {
-            position: relative;
-            z-index: 10;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding-top: 5rem;
-            padding-bottom: 5rem;
-        }
+    /* Profile Section */
+    #profile { text-align: center; padding: 30px 0; }
+    .portrait {
+      width: 300px;
+      height: 300px;
+      margin: 0 auto;
+      border-radius: 50%;
+      object-fit: cover;
+      box-shadow: 0 5px 10px var(--shadow-color);
+    }
+    .portrait-title h2 {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 1.75rem;
+      margin-top: 15px;
+      margin-bottom: 5px;
+      color: var(--text-color);
+    }
+    .portrait-title h3 {
+      font-size: 1rem;
+      font-weight: 300;
+      color: var(--muted-text);
+      margin-bottom: 5px;
+    }
+    .network-icon {
+      list-style: none;
+      padding: 0;
+      margin-top: 20px;
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+    }
+    .big-icon { font-size: 1.5rem; color: var(--text-color); transition: color 0.2s; }
+    .big-icon:hover { color: var(--link-color); }
 
-        .profile-img {
-            transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.5s ease;
-        }
-        .profile-img:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 40px rgba(6, 182, 212, 0.4); /* Cyan glow */
-        }
+    /* Main Sections */
+    .home-section { padding: 40px 0; }
+    /* Helper class for alternating backgrounds */
+    .bg-alternate { background-color: var(--section-bg) !important; transition: background-color 0.3s; }
 
-        .glass-card {
-            background: rgba(10, 20, 35, 0.4); /* Slightly bluish tint */
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            backdrop-filter: blur(8px); /* Increased blur */
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
-        }
-        
-        .glass-card:hover {
-            background: rgba(20, 30, 50, 0.5);
-            border-color: rgba(6, 182, 212, 0.3); /* Cyan tint on hover */
-            transform: translateY(-2px);
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
-        }
+    h1 { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 1.8rem; margin-bottom: 20px; color: var(--text-color); }
+    h3 { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 1.2rem; margin-top: 20px; color: var(--text-color); }
+    
+    /* Lists */
+    .ul-edu { list-style: none; padding-left: 0; }
+    .ul-edu li { position: relative; margin-bottom: 20px; padding-left: 30px; }
+    .ul-edu li .fa-li { position: absolute; left: 0; top: 5px; color: var(--text-color); }
+    .institution { font-size: 0.9rem; color: var(--muted-text); }
+    .course { font-weight: bold; }
 
-        .social-link {
-            position: relative;
-            text-decoration: none;
-            opacity: 0.7;
-            transition: all 0.3s;
-        }
-        .social-link:hover {
-            opacity: 1;
-            color: #a5f3fc;
-        }
-        .social-link::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 1px;
-            bottom: -4px;
-            left: 50%;
-            background-color: #a5f3fc;
-            transition: all 0.3s ease;
-            transform: translateX(-50%);
-        }
-        .social-link:hover::after {
-            width: 100%;
-        }
+    /* Interests */
+    .ul-interests { list-style: none; padding-left: 0; column-count: 2; }
+    .interest-list-item { margin-bottom: 10px; position: relative; padding-left: 25px; }
+    .interest-list-item i { position: absolute; left: 0; top: 4px; color: var(--link-color); }
 
-        /* Custom scrollbar */
-        ::-webkit-scrollbar {
-            width: 6px;
-        }
-        ::-webkit-scrollbar-track {
-            background: rgba(0, 0, 0, 0.3);
-            border-radius: 4px;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #334155;
-            border-radius: 4px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #475569;
-        }
-    </style>
+    /* Publications & Projects */
+    .btn-links .btn {
+      border-radius: 30px;
+      font-size: 0.75rem;
+      padding: 3px 12px;
+      margin-right: 5px;
+      text-transform: uppercase;
+      font-weight: bold;
+    }
+    .btn-outline-primary { color: var(--link-color); border-color: var(--link-color); }
+    .btn-outline-primary:hover { background-color: var(--link-color); color: var(--bg-color); }
+    
+    .card { 
+      border: none; 
+      box-shadow: 0 0 10px var(--shadow-color); 
+      margin-bottom: 30px; 
+      background-color: var(--card-bg);
+      transition: background-color 0.3s;
+    }
+    .card-text { padding: 15px; }
+    .card-text h4 { font-size: 1.1rem; font-weight: bold; margin-bottom: 5px; color: var(--text-color); }
+    .card-text p { font-size: 0.9rem; color: var(--muted-text); margin-bottom: 0; }
+
+    .text-muted { color: var(--muted-text) !important; }
+
+    /* Mobile Responsive tweaks */
+    @media (max-width: 768px) {
+      .ul-interests { column-count: 1; }
+    }
+  </style>
 </head>
-<body>
 
-    <!-- Background 3D Canvas -->
-    <canvas id="bg-canvas"></canvas>
+<body id="top">
 
-    <!-- Main Content -->
-    <div class="content-wrapper px-4">
-        
-        <main class="max-w-3xl w-full text-center space-y-12">
-            
-            <!-- Header Section -->
-            <div class="space-y-6 backdrop-blur-md p-8 rounded-2xl border border-white/5 bg-black/20 shadow-2xl">
-                <!-- Profile Photo -->
-                <div class="flex justify-center">
-                    <img 
-                        src="Sam_org.jpeg" 
-                        alt="P Sam Sahil" 
-                        class="profile-img w-48 h-48 md:w-56 md:h-56 rounded-full border-2 border-cyan-900/50 object-cover mx-auto"
-                        onerror="this.src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdCb3g9JzAgMCAyMDAgMjAwJz48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9J2czJyB4MT0nMCUnIHkxPScwJScgeDI9JzEwMCUnIHkyPScxMDAlJz48c3RvcCBvZmZzZXQ9JzAlJyBzdHlsZT0nc3RvcC1jb2xvcjojMDUxOTM3O3N0b3Atb3BhY2l0eToxJyAvPjxzdG9wIG9mZnNldD0nMTAwJScgc3R5bGU9J3N0b3AtY29sb3I6IzAwMDAwMDtzdG9wLW9wYWNpdHk6MScgLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB3aWR0aD0nMjAwJyBoZWlnaHQ9JzIwMCcgZmlsbD0ndXJsKCNnMyknLz48dGV4dCB4PSc1MCUnIHk9JzUwJScgZG9tLWJhc2VsaW5lPSdtaWRkbGUnIHRleHQtYW5jaG9yPSdtaWRkbGUnIGZpbGw9JyM5NGRkZmYnIGZvbnQtZmFtaWx5PSJtb25vc3BhY2UiIGZvbnQtc2l6ZT0nNDAnPlBTUzwvdGV4dD48L3N2Zz4='"
-                    >
-                </div>
+  <nav class="navbar navbar-expand-lg fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="#">P Sam Sahil</a>
+      
+      <div class="d-flex align-items-center order-lg-last">
+        <button class="navbar-toggler ml-2" type="button" data-toggle="collapse" data-target="#navbar">
+          <span class="navbar-toggler-icon" style="display:flex;align-items:center;justify-content:center;">
+             <i class="fas fa-bars" style="color:var(--text-color);"></i>
+          </span>
+        </button>
+      </div>
 
-                <!-- Name & Title -->
-                <div class="space-y-2">
-                    <h1 class="text-4xl md:text-5xl font-bold tracking-tight text-white">
-                        P Sam Sahil
-                    </h1>
-                    <p class="text-cyan-200/90 text-sm md:text-base tracking-[0.2em] uppercase font-light">
-                        Research Intern &bull; Research Assistant
-                    </p>
-                </div>
-
-                <!-- Bio -->
-                <div class="text-gray-400 leading-relaxed text-sm max-w-xl mx-auto font-light">
-                    <p>
-                        Research Intern at 
-                        <span class="text-cyan-100 font-medium">Northwestern University</span>, 
-                        <span class="text-cyan-100 font-medium">NTU Singapore</span>, and 
-                        <span class="text-cyan-100 font-medium">University of Hamburg</span>.
-                    </p>
-                    <p class="mt-3">
-                        Pivoting from black-box models to <span class="text-white">principled design</span>. Focused on building systems that are not just performant, but reasoning-capable and transparent.
-                    </p>
-                </div>
-
-                <!-- Links -->
-                <div class="flex flex-wrap justify-center items-center gap-6 pt-2 text-xs md:text-sm tracking-wide">
-                    <a href="mailto:p.samsahil2003@gmail.com" class="social-link text-white">Email</a>
-                    <a href="https://scholar.google.com/citations?user=iZSvkDoAAAAJ&hl=en&authuser=2" target="_blank" class="social-link text-white">Google Scholar</a>
-                    <a href="https://www.linkedin.com/in/p-sam-sahil-782755245/" target="_blank" class="social-link text-white">LinkedIn</a>
-                    <a href="https://github.com/P-SAM-SAHIL" target="_blank" class="social-link text-white">GitHub</a>
-                </div>
-            </div>
-
-            <!-- Research Focus Section -->
-            <div class="w-full text-left space-y-6">
-                <h2 class="text-center text-xs uppercase tracking-[0.3em] text-gray-500">Research Focus</h2>
-                
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <!-- Interest 1 -->
-                    <div class="glass-card p-5 rounded-xl">
-                        <div class="flex items-center gap-2 mb-2">
-                            <div class="w-1.5 h-1.5 rounded-full bg-cyan-400"></div>
-                            <h3 class="text-sm font-semibold text-cyan-100 uppercase tracking-wider">Interpretability & Trust</h3>
-                        </div>
-                        <p class="text-xs text-gray-400 leading-relaxed pl-3.5 border-l border-white/5">
-                            Moving beyond "black box" optimization to design transparent AI architectures. Investigating how internal reasoning mechanisms can be made explicit and human-verifiable.
-                        </p>
-                    </div>
-
-                    <!-- Interest 2 -->
-                    <div class="glass-card p-5 rounded-xl">
-                         <div class="flex items-center gap-2 mb-2">
-                            <div class="w-1.5 h-1.5 rounded-full bg-purple-400"></div>
-                            <h3 class="text-sm font-semibold text-cyan-100 uppercase tracking-wider">Neuro-Symbolic AI</h3>
-                        </div>
-                        <p class="text-xs text-gray-400 leading-relaxed pl-3.5 border-l border-white/5">
-                            Bridging the gap between the scale of neural networks and the logic of symbolic reasoning. Developing dual-path architectures (GAT + RoBERTa) to ground semantics in structured knowledge.
-                        </p>
-                    </div>
-
-                    <!-- Interest 3 -->
-                    <div class="glass-card p-5 rounded-xl">
-                         <div class="flex items-center gap-2 mb-2">
-                            <div class="w-1.5 h-1.5 rounded-full bg-blue-400"></div>
-                            <h3 class="text-sm font-semibold text-cyan-100 uppercase tracking-wider">Multilingual NLP</h3>
-                        </div>
-                        <p class="text-xs text-gray-400 leading-relaxed pl-3.5 border-l border-white/5">
-                            Breaking language barriers in emotion detection and polarization. Focusing on cross-lingual generalization to capture nuance across diverse cultural contexts and low-resource languages.
-                        </p>
-                    </div>
-
-                    <!-- Interest 4 -->
-                    <div class="glass-card p-5 rounded-xl">
-                         <div class="flex items-center gap-2 mb-2">
-                            <div class="w-1.5 h-1.5 rounded-full bg-green-400"></div>
-                            <h3 class="text-sm font-semibold text-cyan-100 uppercase tracking-wider">Comp. Social Science</h3>
-                        </div>
-                        <p class="text-xs text-gray-400 leading-relaxed pl-3.5 border-l border-white/5">
-                            Applying rigorous NLP pipelines to large-scale social data. From geo-tagging historical newspapers to analyzing online polarization to answer fundamental questions.
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- LATEST UPDATES (Scrollable Section) -->
-            <div class="w-full text-left space-y-6">
-                <h2 class="text-center text-xs uppercase tracking-[0.3em] text-gray-500">Latest Updates</h2>
-                
-                <!-- Scrollable Container -->
-                <div class="glass-card rounded-xl p-2 h-64 overflow-y-auto">
-                    <div class="space-y-2">
-
-                                                <div class="p-4 hover:bg-white/5 rounded-lg transition-colors border-b border-white/5 last:border-0 group">
-                            <div class="flex justify-between items-start mb-1">
-                                <span class="text-xs text-cyan-300 font-mono">Feb 2026</span>
-                                <span class="text-[10px] text-yellow-400 border border-yellow-700/50 px-1.5 py-0.5 rounded group-hover:border-yellow-500/50 transition-colors">Preprint</span>
-                            </div>
-                            <h3 class="text-sm font-bold text-gray-200 group-hover:text-white transition-colors">POLAR Benchmark Released</h3>
-                            <p class="text-xs text-gray-400 mt-1">New research on Multilingual, Multicultural, and Multi-Event Online Polarization detection across 25+ languages.</p>
-                            <a href="https://arxiv.org/abs/2505.20624" target="_blank" class="inline-block mt-2 text-xs text-cyan-200 hover:text-white border-b border-cyan-200/50 hover:border-white pb-0.5 transition-all">
-                                Read on arXiv &rarr;
-                            </a>
-                        </div>
-                        
-                        <!-- Update Item 1: SemEval POLAR -->
-                        <div class="p-4 hover:bg-white/5 rounded-lg transition-colors border-b border-white/5 last:border-0 group">
-                            <div class="flex justify-between items-start mb-1">
-                                <span class="text-xs text-cyan-300 font-mono">Present</span>
-                                <span class="text-[10px] text-gray-400 border border-gray-700 px-1.5 py-0.5 rounded group-hover:border-cyan-500/50 transition-colors">Event</span>
-                            </div>
-                            <h3 class="text-sm font-bold text-gray-200 group-hover:text-white transition-colors">POLAR @ SemEval-2026</h3>
-                            <p class="text-xs text-gray-400 mt-1">Co-organizer for Task 9: Detecting Multilingual, Multicultural, and Multievent Online Polarization.</p>
-                            <a href="https://polar-semeval.github.io" target="_blank" class="inline-block mt-2 text-xs text-cyan-200 hover:text-white border-b border-cyan-200/50 hover:border-white pb-0.5 transition-all">
-                                Visit polar-semeval.github.io &rarr;
-                            </a>
-                        </div>
-
-                        <!-- Update Item 2: Northwestern -->
-                        <div class="p-4 hover:bg-white/5 rounded-lg transition-colors border-b border-white/5 last:border-0 group">
-                            <div class="flex justify-between items-start mb-1">
-                                <span class="text-xs text-gray-400 font-mono">Jan 2026</span>
-                                <span class="text-[10px] text-gray-400 border border-gray-700 px-1.5 py-0.5 rounded group-hover:border-white/30 transition-colors">Internship</span>
-                            </div>
-                            <h3 class="text-sm font-bold text-gray-200 group-hover:text-white">Northwestern University</h3>
-                            <p class="text-xs text-gray-400 mt-1">Incoming Research Assistant Intern at Change Lab (Kellogg School of Management).</p>
-                        </div>
-
-                        <!-- Update Item 3: NTU -->
-                        <div class="p-4 hover:bg-white/5 rounded-lg transition-colors border-b border-white/5 last:border-0 group">
-                            <div class="flex justify-between items-start mb-1">
-                                <span class="text-xs text-gray-400 font-mono">Jan 2026</span>
-                                <span class="text-[10px] text-gray-400 border border-gray-700 px-1.5 py-0.5 rounded group-hover:border-white/30 transition-colors">Internship</span>
-                            </div>
-                            <h3 class="text-sm font-bold text-gray-200 group-hover:text-white">NTU Singapore</h3>
-                            <p class="text-xs text-gray-400 mt-1">Incoming Research Intern working on Fast RAG on Edge Devices.</p>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-
-            <!-- Publications Section -->
-            <div class="w-full text-left space-y-6">
-                <h2 class="text-center text-xs uppercase tracking-[0.3em] text-gray-500 mb-6">Selected Publications</h2>
-
-
-                                    <div class="glass-card p-6 rounded-xl relative group cursor-default">
-                        <div class="absolute top-0 right-0 p-4 opacity-50 text-xs text-yellow-400 font-bold tracking-wider group-hover:opacity-100 transition-opacity">
-                            PREPRINT (arXiv)
-                        </div>
-                        <h3 class="text-lg md:text-xl font-semibold text-gray-100 pr-24 group-hover:text-white transition-colors">
-                            POLAR: A Benchmark for Multilingual, Multicultural, and Multi-Event Online Polarization
-                        </h3>
-                        <p class="text-xs text-cyan-200/70 mt-1 mb-3 font-light">
-                            arXiv:2505.20624 &bull; Large-scale Collaboration
-                        </p>
-                        <p class="text-gray-400 text-sm leading-relaxed">
-                            Developed a comprehensive benchmark for detecting online polarization across 25+ languages and diverse cultural contexts, providing a standardized framework for computational social science.
-                        </p>
-                        <div class="mt-4 flex gap-3">
-                            <span class="text-[10px] border border-gray-700 px-2 py-1 rounded text-gray-500 group-hover:border-gray-500 transition-colors">Benchmark</span>
-                            <span class="text-[10px] border border-gray-700 px-2 py-1 rounded text-gray-500 group-hover:border-gray-500 transition-colors">Social Computing</span>
-                            <span class="text-[10px] border border-gray-700 px-2 py-1 rounded text-gray-500 group-hover:border-gray-500 transition-colors">Multilingual NLP</span>
-                        </div>
-                    </div>
-                
-                <!-- Publication 1 -->
-                <div class="glass-card p-6 rounded-xl relative group cursor-default">
-                    <div class="absolute top-0 right-0 p-4 opacity-50 text-xs text-green-400 font-bold tracking-wider group-hover:opacity-100 transition-opacity">
-                        PUBLISHED (ACL)
-                    </div>
-                    <h3 class="text-lg md:text-xl font-semibold text-gray-100 pr-20 group-hover:text-white transition-colors">
-                        Breaking Language Barriers in Emotion Detection
-                    </h3>
-                    <p class="text-xs text-cyan-200/70 mt-1 mb-3 font-light">
-                        SemEval-2025 Task 11 &bull; Team A
-                    </p>
-                    <p class="text-gray-400 text-sm leading-relaxed">
-                        Developed multilingual models for multi-label emotion detection across diverse languages, achieving competitive leaderboard ranks (Russian 7th, Hindi 9th).
-                    </p>
-                    <div class="mt-4 flex gap-3">
-                        <span class="text-[10px] border border-gray-700 px-2 py-1 rounded text-gray-500 group-hover:border-gray-500 transition-colors">Multilingual NLP</span>
-                        <span class="text-[10px] border border-gray-700 px-2 py-1 rounded text-gray-500 group-hover:border-gray-500 transition-colors">Emotion AI</span>
-                    </div>
-                </div>
-
-                <!-- Publication 2 -->
-                <div class="glass-card p-6 rounded-xl relative group cursor-default">
-                    <div class="absolute top-0 right-0 p-4 opacity-50 text-xs text-yellow-400 font-bold tracking-wider group-hover:opacity-100 transition-opacity">
-                        UNDER REVIEW
-                    </div>
-                    <h3 class="text-lg md:text-xl font-semibold text-gray-100 pr-24 group-hover:text-white transition-colors">
-                        Synergizing Contextual Semantics and Moral Knowledge Graphs
-                    </h3>
-                    <p class="text-xs text-cyan-200/70 mt-1 mb-3 font-light">
-                        Dual-Path Architecture for Moral Foundation Prediction
-                    </p>
-                    <p class="text-gray-400 text-sm leading-relaxed">
-                        Proposed a hybrid RoBERTa + GAT architecture leveraging eMFD knowledge graphs with cross-attentive fusion to improve moral foundation prediction.
-                    </p>
-                    <div class="mt-4 flex gap-3">
-                        <span class="text-[10px] border border-gray-700 px-2 py-1 rounded text-gray-500 group-hover:border-gray-500 transition-colors">Graph Neural Networks</span>
-                        <span class="text-[10px] border border-gray-700 px-2 py-1 rounded text-gray-500 group-hover:border-gray-500 transition-colors">Moral AI</span>
-                    </div>
-                </div>
-
-            </div>
-
-            <footer class="pt-12 text-[10px] text-gray-600 uppercase tracking-widest pb-8">
-                <p>&copy; 2025 P Sam Sahil &bull; Built with Three.js</p>
-            </footer>
-        </main>
+      <div class="collapse navbar-collapse" id="navbar">
+        <ul class="navbar-nav ml-auto align-items-center">
+          <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="#news">News</a></li>
+          <li class="nav-item"><a class="nav-link" href="#publications">Publications</a></li>
+          <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">CV</a></li>
+          <li class="nav-item">
+            <button class="theme-toggle" id="theme-toggle" title="Toggle theme">
+              <i class="fas fa-moon"></i>
+            </button>
+          </li>
+        </ul>
+      </div>
     </div>
+  </nav>
 
-    <!-- Three.js Script -->
-    <script>
-        window.addEventListener('load', init);
-
-        function init() {
-            const canvas = document.getElementById('bg-canvas');
+  <section id="about" class="home-section">
+    <div class="container">
+      <div class="row">
+        
+        <div class="col-12 col-lg-4">
+          <div id="profile">
             
-            // 1. Scene & Camera
-            const scene = new THREE.Scene();
-            // Deep blue fog to blend stars into the distance
-            scene.fog = new THREE.FogExp2(0x02040a, 0.025); 
+            <img class="portrait" src="profile_photo.png" alt="P Sam Sahil">
 
-            const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-            camera.position.z = 20;
+            <div class="portrait-title">
+              <h2>P Sam Sahil</h2>
+              <h3>Visiting UG Research Fellow</h3>
+              <h3>
+                <a href="https://www.harvard.edu/" target="_blank">Harvard University</a>
+              </h3>
+            </div>
 
-            // 2. Renderer
-            const renderer = new THREE.WebGLRenderer({
-                canvas: canvas,
-                antialias: true,
-                alpha: true
-            });
-            renderer.setSize(window.innerWidth, window.innerHeight);
-            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+            <ul class="network-icon" aria-hidden="true">
+              <li><a href="mailto:p.samsahil2003@gmail.com"><i class="fas fa-envelope big-icon"></i></a></li>
+              <li><a href="https://www.linkedin.com/in/p-sam-sahil-782755245/"><i class="fab fa-linkedin big-icon"></i></a></li>
+              <li><a href="https://github.com/P-SAM-SAHIL"><i class="fab fa-github big-icon"></i></a></li>
+              <li><a href="https://scholar.google.com/citations?user=iZSvkDoAAAAJ&hl=en"><i class="ai ai-google-scholar big-icon"></i></a></li>
+            </ul>
+          </div>
+        </div>
 
-            // 3. Texture Generation (Soft Glow)
-            function createStarTexture() {
-                const matCanvas = document.createElement('canvas');
-                matCanvas.width = 32;
-                matCanvas.height = 32;
-                const context = matCanvas.getContext('2d');
-                const gradient = context.createRadialGradient(16, 16, 0, 16, 16, 16);
-                gradient.addColorStop(0, 'rgba(255, 255, 255, 1)');
-                gradient.addColorStop(0.2, 'rgba(230, 240, 255, 0.8)'); // Slight blue tint
-                gradient.addColorStop(0.5, 'rgba(6, 182, 212, 0.2)'); // Cyan glow
-                gradient.addColorStop(1, 'rgba(0, 0, 0, 0)');
-                context.fillStyle = gradient;
-                context.fillRect(0,0,32,32);
-                return new THREE.CanvasTexture(matCanvas);
-            }
+        <div class="col-12 col-lg-8">
+          <h1>Biography</h1>
+          <p>I am an undergraduate researcher in Computer Science Engineering, currently focusing on <strong>NLP Interpretability</strong>, <strong>Social Computing</strong>, and <strong>Safety Alignment</strong> in Large Language Models. My research aims to build pipelines that analyze polarization, bias, and causal mechanisms within transformer models.</p>
+          
+          <p>I will soon be joining the <strong>Hatzenbuehler Lab at Harvard University</strong> as a Visiting Research Fellow. Previously, I have worked with labs at <strong>Northwestern University</strong>, <strong>NTU Singapore</strong>, and the <strong>University of Hamburg</strong>.</p>
 
-            // --- PART 1: Background Stars (Dust) ---
-            const starGeo = new THREE.BufferGeometry();
-            const starCount = 1200;
-            const starPos = new Float32Array(starCount * 3);
+          <div class="row">
+            <div class="col-md-5">
+              <h3>Interests</h3>
+              <ul class="ul-interests">
+                <li class="interest-list-item"><i class="fas fa-brain"></i>Interpretability</li>
+                <li class="interest-list-item"><i class="fas fa-comments"></i>NLP</li>
+                <li class="interest-list-item"><i class="fas fa-users"></i>Social Computing</li>
+                <li class="interest-list-item"><i class="fas fa-shield-alt"></i>Safety & Alignment</li>
+              </ul>
+            </div>
+            <div class="col-md-7">
+              <h3>Education</h3>
+              <ul class="ul-edu">
+                <li>
+                  <i class="fa-li fas fa-graduation-cap"></i>
+                  <div class="description">
+                    <p class="course">B.E. in Computer Science Engineering</p>
+                    <p class="institution">Visvesvaraya Technological University (VTU), India, 2026</p>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row mt-4">
+        <div class="col-12">
+            <h3>Experience</h3>
+            <div class="row">
+                <div class="col-md-6">
+                    <ul class="ul-edu">
+                        <li>
+                            <i class="fa-li fas fa-university"></i>
+                            <div class="description">
+                            <p class="course">Visiting UG Research Fellow</p>
+                            <p class="institution"><strong>Harvard University</strong> (Hatzenbuehler Lab) | <em>Mar 2026 – Jul 2026</em></p>
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fa-li fas fa-flask"></i>
+                            <div class="description">
+                            <p class="course">Research Assistant Intern</p>
+                            <p class="institution"><strong>Northwestern University</strong> (Kellogg School) | <em>Jan 2026 – Jun 2026</em></p>
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fa-li fas fa-globe-asia"></i>
+                            <div class="description">
+                            <p class="course">Research Intern</p>
+                            <p class="institution"><strong>NTU Singapore</strong> | <em>Jan 2026 – Feb 2026</em></p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-6">
+                    <ul class="ul-edu">
+                        <li>
+                            <i class="fa-li fas fa-laptop-code"></i>
+                            <div class="description">
+                            <p class="course">Research Intern (Organizer SemEval '26)</p>
+                            <p class="institution"><strong>University of Hamburg</strong> (HCDS Lab) | <em>Aug 2025 – Present</em></p>
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fa-li fas fa-code"></i>
+                            <div class="description">
+                            <p class="course">Research Intern</p>
+                            <p class="institution"><strong>NIT Agartala</strong> | <em>Jan 2025 – Dec 2025</em></p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="news" class="home-section bg-alternate">
+    <div class="container">
+      <div class="row">
+        <div class="col-12 col-lg-2">
+          <h1>🗞️ News</h1>
+        </div>
+        <div class="col-12 col-lg-10">
+          <ul>
+            <li><strong>Feb 2026:</strong> Accepted as a Visiting Undergraduate Research Fellow at <strong>Harvard University</strong>! 🎓</li>
+            <li><strong>Jan 2026:</strong> Started Research Internship at <strong>Northwestern University</strong> (Remote).</li>
+            <li><strong>Aug 2025:</strong> Organizing member for <strong>SemEval 2026 Task 9</strong>: Detecting Multilingual Polarization. 🌍</li>
+            <li><strong>Jan 2025:</strong> Ranked 7th (Russian) and 9th (Hindi) in SemEval-2025 Task 11 Emotion Detection.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="publications" class="home-section">
+    <div class="container">
+      <div class="row">
+        <div class="col-12 col-lg-2">
+          <h1>Publications</h1>
+        </div>
+        <div class="col-12 col-lg-10">
             
-            for(let i=0; i<starCount*3; i++) {
-                starPos[i] = (Math.random() - 0.5) * 80; // Wide spread
-            }
-            starGeo.setAttribute('position', new THREE.BufferAttribute(starPos, 3));
-            const starMat = new THREE.PointsMaterial({
-                size: 0.15,
-                map: createStarTexture(),
-                transparent: true,
-                opacity: 0.6,
-                depthWrite: false,
-                blending: THREE.AdditiveBlending
-            });
-            const stars = new THREE.Points(starGeo, starMat);
-            scene.add(stars);
+          <div class="mb-4">
+            <h4><a href="#">POLAR: A Benchmark for Multilingual, Multicultural, and Multi-Event Online Polarization</a></h4>
+            <div class="text-muted small">
+              Usman Naseem, ..., <strong>P Sam Sahil</strong>, ..., Seid Muhie Yimam
+            </div>
+            <div class="text-muted small"><em>Preprint (arXiv:2505.20624), 2026</em></div>
+            <div class="btn-links mt-2">
+              <a class="btn btn-outline-primary btn-sm" href="https://arxiv.org/abs/2505.20624">PDF</a>
+              <a class="btn btn-outline-primary btn-sm" href="#">Code</a>
+            </div>
+          </div>
 
+          <div class="mb-4">
+            <h4><a href="#">Team A at SemEval-2025 Task 11: Breaking Language Barriers in Emotion Detection</a></h4>
+            <div class="text-muted small">
+              <strong>P Sam Sahil</strong>, Anupam Jamatia
+            </div>
+            <div class="text-muted small"><em>SemEval 2025 (ACL)</em></div>
+            <div class="btn-links mt-2">
+              <a class="btn btn-outline-primary btn-sm" href="https://aclanthology.org/2025.semeval-1.12/">ACL Anthology</a>
+            </div>
+          </div>
 
-            // --- PART 2: Neural Network / Constellations (Foreground) ---
-            // These particles connect with lines
-            const netGeo = new THREE.BufferGeometry();
-            const netCount = 70; // Low count for performance
-            const netPos = new Float32Array(netCount * 3);
-            const netVel = []; // Velocities
+           <div class="mb-4">
+            <h4><a href="#">Synergizing Contextual Semantics and Moral Knowledge Graphs</a></h4>
+            <div class="text-muted small">
+              <strong>P Sam Sahil</strong>, Anupam Jamatia, Kunal Chakma
+            </div>
+            <div class="text-muted small"><em>Under Review</em></div>
+            <div class="btn-links mt-2">
+              <a class="btn btn-outline-primary btn-sm" href="https://www.authorea.com/doi/full/10.22541/au.175440469.97011244/v1">Preprint</a>
+            </div>
+          </div>
 
-            for(let i=0; i<netCount; i++) {
-                netPos[i*3] = (Math.random() - 0.5) * 30;
-                netPos[i*3+1] = (Math.random() - 0.5) * 30;
-                netPos[i*3+2] = (Math.random() - 0.5) * 15 + 5; // Closer to camera
-                
-                netVel.push({
-                    x: (Math.random() - 0.5) * 0.02,
-                    y: (Math.random() - 0.5) * 0.02,
-                    z: (Math.random() - 0.5) * 0.02
-                });
-            }
-            netGeo.setAttribute('position', new THREE.BufferAttribute(netPos, 3));
-            
-            const netMat = new THREE.PointsMaterial({
-                size: 0.3,
-                color: 0x67e8f9, // Cyan-300
-                transparent: true,
-                opacity: 0.9,
-                blending: THREE.AdditiveBlending
-            });
-            const networkPoints = new THREE.Points(netGeo, netMat);
-            scene.add(networkPoints);
+        </div>
+      </div>
+    </div>
+  </section>
 
-            // Lines geometry (dynamic)
-            const lineGeo = new THREE.BufferGeometry();
-            const lineMat = new THREE.LineBasicMaterial({
-                color: 0x67e8f9, // Cyan-300
-                transparent: true,
-                opacity: 0.4, // Reduced to be less irritating but visible
-                blending: THREE.AdditiveBlending
-            });
-            const lines = new THREE.LineSegments(lineGeo, lineMat);
-            scene.add(lines);
+  <section id="projects" class="home-section bg-alternate">
+    <div class="container">
+      <div class="row">
+        <div class="col-12 text-center mb-4">
+          <h1>Selected Projects</h1>
+        </div>
+      </div>
+      <div class="row">
+        
+        <div class="col-md-6">
+          <div class="card">
+            <div class="card-text">
+              <h4>Automated Circuit Analysis</h4>
+              <p class="mb-2">Designed a fully automated pipeline for discovering, interpreting, and validating task-specific causal circuits in transformer models.</p>
+              <div class="btn-links">
+                <a class="btn btn-outline-primary btn-sm" href="https://github.com/P-SAM-SAHIL/Automated-Circuit-Analysis">Code</a>
+              </div>
+            </div>
+          </div>
+        </div>
 
+        <div class="col-md-6">
+          <div class="card">
+            <div class="card-text">
+              <h4>Llama-3.2 Vision Radiology</h4>
+              <p class="mb-2">Fine-tuned Llama-3.2-11B-Vision-Instruct via LoRA for efficient adaptation to radiology image captioning using Unsloth.</p>
+              <div class="btn-links">
+                <a class="btn btn-outline-primary btn-sm" href="https://github.com/P-SAM-SAHIL/LLama-3.2-11b-vision-instruct-Fine-tune">Code</a>
+              </div>
+            </div>
+          </div>
+        </div>
 
-            // --- PART 3: Floating Geometry (Structured Logic) ---
-            const geoGroup = new THREE.Group();
-            scene.add(geoGroup);
+        <div class="col-md-6">
+          <div class="card">
+            <div class="card-text">
+              <h4>AI4Democracy Platform</h4>
+              <p class="mb-2">Monitoring platform analyzing antidemocratic narratives across 500+ daily sources using RoBERTa and Llama 2 pipelines.</p>
+              <div class="btn-links">
+                <a class="btn btn-outline-primary btn-sm" href="#">Details</a>
+              </div>
+            </div>
+          </div>
+        </div>
 
-            // Create a few wireframe shapes
-            const shapes = [];
-            
-            function addShape(size, x, y, z) {
-                const geometry = new THREE.IcosahedronGeometry(size, 0);
-                const wireframe = new THREE.WireframeGeometry(geometry);
-                const line = new THREE.LineSegments(wireframe);
-                line.material.depthTest = false;
-                line.material.opacity = 0.18; // Reduced opacity
-                line.material.transparent = true;
-                line.material.color = new THREE.Color(0x67e8f9); // Cyan-300
-                
-                line.position.set(x, y, z);
-                
-                // Add custom rotation speed property
-                line.userData = { 
-                    rotX: (Math.random() - 0.5) * 0.002,
-                    rotY: (Math.random() - 0.5) * 0.002 
-                };
-                
-                geoGroup.add(line);
-                shapes.push(line);
-            }
+      </div>
+    </div>
+  </section>
 
-            // Add shapes at different depths
-            addShape(4, -15, 10, -5);
-            addShape(6, 20, -10, -10);
-            addShape(2, -8, -15, 5);
+  <footer class="text-center py-4 text-muted small">
+    <div class="container">
+      <p>&copy; 2026 P Sam Sahil. Powered by Bootstrap.</p>
+    </div>
+  </footer>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
 
-            // 5. Interaction
-            let mouseX = 0;
-            let mouseY = 0;
-            const windowHalfX = window.innerWidth / 2;
-            const windowHalfY = window.innerHeight / 2;
+  <script>
+    const toggleButton = document.getElementById('theme-toggle');
+    const toggleIcon = toggleButton.querySelector('i');
+    const body = document.body;
 
-            document.addEventListener('mousemove', (event) => {
-                mouseX = (event.clientX - windowHalfX);
-                mouseY = (event.clientY - windowHalfY);
-            });
+    // Check localStorage for saved preference
+    const currentTheme = localStorage.getItem('theme');
 
-            window.addEventListener('resize', () => {
-                camera.aspect = window.innerWidth / window.innerHeight;
-                camera.updateProjectionMatrix();
-                renderer.setSize(window.innerWidth, window.innerHeight);
-            });
+    // If 'light' is saved, apply it; otherwise default is dark (no class needed)
+    if (currentTheme === 'light') {
+      body.classList.add('light-mode');
+      toggleIcon.classList.remove('fa-moon');
+      toggleIcon.classList.add('fa-sun');
+    }
 
-            // 6. Animation
-            const clock = new THREE.Clock();
+    toggleButton.addEventListener('click', () => {
+      body.classList.toggle('light-mode');
 
-            function animate() {
-                const time = clock.getElapsedTime();
-
-                // Rotate dust
-                stars.rotation.y = time * 0.02;
-                stars.rotation.x = mouseY * 0.00005;
-
-                // Update Network Points
-                const positions = networkPoints.geometry.attributes.position.array;
-                
-                // Move points
-                for(let i=0; i<netCount; i++) {
-                    positions[i*3] += netVel[i].x;
-                    positions[i*3+1] += netVel[i].y;
-                    positions[i*3+2] += netVel[i].z;
-
-                    // Boundary check (bounce softly)
-                    if(Math.abs(positions[i*3]) > 20) netVel[i].x *= -1;
-                    if(Math.abs(positions[i*3+1]) > 20) netVel[i].y *= -1;
-                    if(Math.abs(positions[i*3+2]) > 10) netVel[i].z *= -1;
-                }
-                networkPoints.geometry.attributes.position.needsUpdate = true;
-
-                // Update Network Lines (The "Graph" Logic)
-                const linePositions = [];
-                // N^2 check but N is small (70)
-                for(let i=0; i<netCount; i++) {
-                    for(let j=i+1; j<netCount; j++) {
-                        const dx = positions[i*3] - positions[j*3];
-                        const dy = positions[i*3+1] - positions[j*3+1];
-                        const dz = positions[i*3+2] - positions[j*3+2];
-                        const dist = Math.sqrt(dx*dx + dy*dy + dz*dz);
-
-                        if(dist < 7) { // Increased distance slightly for more connections
-                            linePositions.push(
-                                positions[i*3], positions[i*3+1], positions[i*3+2],
-                                positions[j*3], positions[j*3+1], positions[j*3+2]
-                            );
-                        }
-                    }
-                }
-                lineGeo.setAttribute('position', new THREE.Float32BufferAttribute(linePositions, 3));
-
-                // Rotate Geometric Shapes
-                shapes.forEach(shape => {
-                    shape.rotation.x += shape.userData.rotX;
-                    shape.rotation.y += shape.userData.rotY;
-                    
-                    // Gentle float
-                    shape.position.y += Math.sin(time * 0.5 + shape.position.x) * 0.005;
-                });
-
-                // Parallax for Geometry Group
-                geoGroup.rotation.y = mouseX * 0.0001;
-                geoGroup.rotation.x = mouseY * 0.0001;
-
-
-                renderer.render(scene, camera);
-                requestAnimationFrame(animate);
-            }
-
-            animate();
-        }
-    </script>
+      // Update Icon and Save Preference
+      if (body.classList.contains('light-mode')) {
+        toggleIcon.classList.remove('fa-moon');
+        toggleIcon.classList.add('fa-sun');
+        localStorage.setItem('theme', 'light');
+      } else {
+        toggleIcon.classList.remove('fa-sun');
+        toggleIcon.classList.add('fa-moon');
+        localStorage.setItem('theme', 'dark');
+      }
+    });
+  </script>
 </body>
 </html>
